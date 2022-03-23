@@ -53,7 +53,8 @@ export default {
     computed:{
         idEspecial: function(){
             return (this.cliente.email + this.cliente.nome + this.cliente.id).toUpperCase();
-        }
+        },
+        
     }
 }
 </script>

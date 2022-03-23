@@ -10,7 +10,7 @@
     <small id="nomeErro" v-show="deuErro"> Cadastro invalido</small><br>
     <hr>
       
-      <div v-for="(TestCliente, index) in clientes" :key='TestCliente.id'>
+      <div v-for="(TestCliente, index) in orderClientes" :key='TestCliente.id'>
         <h4>{{ index+ 1 }}</h4>
         <TestCliente :cliente="TestCliente" @meDelete="deletarUsuario($event)"/>
        
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-
+import _ from 'lodash';
 import TestCliente from './components/TestCliente.vue'
 //import ProdutoUm from './components/ProdutoUm.vue'
 export default {
@@ -60,6 +60,12 @@ export default {
         email:"milos.ricardo@lima.com",
         idade: 60
         },
+        {
+          id: 6,
+          nome: "Acardo Milos",
+        email:"ailos.ricardo@lima.com",
+        idade: 60
+        },
       ] 
     }
   },
@@ -87,6 +93,11 @@ export default {
       var novoArray = this.clientes.filter(TestCliente=> TestCliente.id != id);
       this.clientes = novoArray;
       
+    }
+  },
+  computed: {
+    orderClientes: function(){
+      return _.orderBy(this.clientes,['nome'],['asc'])
     }
   }
 }
